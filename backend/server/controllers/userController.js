@@ -128,5 +128,31 @@ export default userHandlers = {
         res.status(200).send({
             message: "Hey, nice new password. I bet no one will crack it this time!"
         })
+    },
+
+    deleteUser: async (req, res) => {
+
+        if (!req.session.userId) {
+            res.status(401).send({
+                message: "You must be logged in to do this"
+            })
+            return
+        }
+
+        const user = await User.findByPk(req.session.userId)
+
+        if (!bcryptjs.compareSync(oldPassword, user.password)) {
+            res.status(401).send({
+                message: "Password incorrect"
+            })
+            return
+        }
+
+        await user.destroy()
+        req.session.destroy()
+
+        res.status(200).send({
+            message: "User deleted"
+        })
     }
 }

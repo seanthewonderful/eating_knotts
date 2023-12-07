@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
-import connectToDB from './database.js'
+import connectToDB from './db.js'
 import util from 'util'
 import bcryptjs from 'bcryptjs'
 
@@ -351,17 +351,17 @@ Land.hasMany(Restaurant, { foreignKey: 'landId' })
 Restaurant.belongsTo(Land, { foreignKey: 'landId' })
 
 // Restaurant has many Cuisines, Cuisine has many Restaurants
-Restaurant.hasMany(Cuisine, { through: 'RestaurantCuisine' })
-Cuisine.hasMany(Restaurant, { through: 'RestaurantCuisine'})
+Restaurant.belongsToMany(Cuisine, { through: 'RestaurantCuisine' })
+Cuisine.belongsToMany(Restaurant, { through: 'RestaurantCuisine'})
 
 // Restaurant has many FoodItems, FoodItem has many Restaurants
-Restaurant.hasMany(FoodItem, { through: 'RestaurantFoodItem' })
-FoodItem.hasMany(Restaurant, { through: 'RestaurantFoodItem' })
+Restaurant.belongsToMany(FoodItem, { through: 'RestaurantFoodItem' })
+FoodItem.belongsToMany(Restaurant, { through: 'RestaurantFoodItem' })
 
 // Restaurant has many MealTypes, MealType has many Restaurants
-Restaurant.hasMany(MealType, { through: 'RestaurantMealType' })
-MealType.hasMany(Restaurant, { through: 'RestaurantMealType' })
+Restaurant.belongsToMany(MealType, { through: 'RestaurantMealType' })
+MealType.belongsToMany(Restaurant, { through: 'RestaurantMealType' })
 
 // FoodItem has many MealTypes, MealType has many FoodItems
-FoodItem.hasMany(MealType, { through: 'FoodItemMealType' })
-MealType.hasMany(FoodItem, { through: 'FoodItemMealType' })
+FoodItem.belongsToMany(MealType, { through: 'FoodItemMealType' })
+MealType.belongsToMany(FoodItem, { through: 'FoodItemMealType' })

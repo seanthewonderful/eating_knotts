@@ -48,4 +48,18 @@ app.put('/user/update/:userId', updateUser)
 app.put('/user/update/password/:userId', updateUserPassword)
 app.delete('/user/delete/:userId', deleteUser)
 
+// Admins
+const {
+    getAdminById,
+    createAdmin,
+    updateAdmin,
+    deleteAdmin,
+} = adminHandlers
+
+app.get('/admin/id/:adminId', getAdminById)
+app.post('/admin/create', createAdmin)
+app.put('/admin/update/:adminId', updateAdmin)
+app.delete('/admin/delete/:adminId', deleteAdmin)
+
+
 ViteExpress.listen(app, 9009, () => console.log(`Knotted up at http://localhost:9009`))

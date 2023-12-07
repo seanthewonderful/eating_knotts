@@ -141,7 +141,9 @@ export default userHandlers = {
 
         const user = await User.findByPk(req.session.userId)
 
-        if (!bcryptjs.compareSync(oldPassword, user.password)) {
+        const { password } = req.body
+
+        if (!bcryptjs.compareSync(password, user.password)) {
             res.status(401).send({
                 message: "Password incorrect"
             })
@@ -149,7 +151,7 @@ export default userHandlers = {
         }
 
         await user.destroy()
-        req.session.destroy()
+        req.session.userId = null
 
         res.status(200).send({
             message: "User deleted"

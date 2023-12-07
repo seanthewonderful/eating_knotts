@@ -3,7 +3,7 @@ import connectToDB from './database.js'
 import util from 'util'
 import bcryptjs from 'bcryptjs'
 
-export const db = await connectToDB('postgresql:///averagedb')
+export const db = await connectToDB('postgresql:///eating_knotts')
 
 export class User extends Model {
     [util.inspect.custom]() {
@@ -26,19 +26,19 @@ User.init(
             type: DataTypes.STRING(500),
             allowNull: false,
         },
-        email: {
-            type: DataTypes.STRING(80),
-            allowNull: false,
-            unique: true,
-        },
-        firstName: {
-            type: DataTypes.STRING(25),
-            allowNull: true,
-        },
-        lastName: {
-            type: DataTypes.STRING(25),
-            allowNull: true,
-        },
+        // email: {
+        //     type: DataTypes.STRING(80),
+        //     allowNull: false,
+        //     unique: true,
+        // },
+        // firstName: {
+        //     type: DataTypes.STRING(25),
+        //     allowNull: true,
+        // },
+        // lastName: {
+        //     type: DataTypes.STRING(25),
+        //     allowNull: true,
+        // },
         img: {
             type: DataTypes.STRING(50),
             defaultValue: "/public/proficons/default.png",
@@ -102,19 +102,19 @@ Admin.init(
             type: DataTypes.STRING(500),
             allowNull: false,
         },
-        email: {
-            type: DataTypes.STRING(80),
-            allowNull: false,
-            unique: true,
-        },
-        firstName: {
-            type: DataTypes.STRING(25),
-            allowNull: true,
-        },
-        lastName: {
-            type: DataTypes.STRING(25),
-            allowNull: true,
-        },
+        // email: {
+        //     type: DataTypes.STRING(80),
+        //     allowNull: false,
+        //     unique: true,
+        // },
+        // firstName: {
+        //     type: DataTypes.STRING(25),
+        //     allowNull: true,
+        // },
+        // lastName: {
+        //     type: DataTypes.STRING(25),
+        //     allowNull: true,
+        // },
         img: {
             type: DataTypes.STRING(50),
             defaultValue: "/public/proficons/default.png",
@@ -189,15 +189,19 @@ Restaurant.init(
             allowNull: false,
             defaultValue: "This restaurant still needs a description."
         },
-        full_service: {
+        fullService: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
-        x_coord: {
+        refills: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
+        xCoord: {
             type: DataTypes.DECIMAL,
             allowNull: false,
         },
-        y_coord: {
+        yCoord: {
             type: DataTypes.DECIMAL,
             allowNull: false,
         },
@@ -333,3 +337,31 @@ MealType.init(
 )
 
 // Relationships
+
+// User has many Ratings
+User.hasMany(Rating, { foreignKey: 'userId' })
+Rating.belongsTo(User, { foreignKey: 'userId' })
+
+// Restaurant has many Ratings
+Restaurant.hasMany(Rating, { foreignKey: 'restaurantId' })
+Rating.belongsTo(Restaurant, { foreignKey: 'restaurantId' })
+
+// Land has many Restaurants, Restaurants have one Land
+Land.hasMany(Restaurant, { foreignKey: 'landId' })
+Restaurant.belongsTo(Land, { foreignKey: 'landId' })
+
+// Restaurant has many Cuisines, Cuisine has many Restaurants
+Restaurant.hasMany(Cuisine, { through: 'RestaurantCuisine' })
+Cuisine.hasMany(Restaurant, { through: 'RestaurantCuisine'})
+
+// Restaurant has many FoodItems, FoodItem has many Restaurants
+Restaurant.hasMany(FoodItem, { through: 'RestaurantFoodItem' })
+FoodItem.hasMany(Restaurant, { through: 'RestaurantFoodItem' })
+
+// Restaurant has many MealTypes, MealType has many Restaurants
+Restaurant.hasMany(MealType, { through: 'RestaurantMealType' })
+MealType.hasMany(Restaurant, { through: 'RestaurantMealType' })
+
+// FoodItem has many MealTypes, MealType has many FoodItems
+FoodItem.hasMany(MealType, { through: 'FoodItemMealType' })
+MealType.hasMany(FoodItem, { through: 'FoodItemMealType' })

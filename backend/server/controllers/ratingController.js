@@ -54,11 +54,6 @@ const ratingHandlers = {
         const { stars, review } = req.body
         const rating = await Rating.findByPk(req.params.ratingId)
 
-        // rating.stars = stars ?? rating.stars
-        // rating.review = review ?? rating.review
-
-        // await rating.save()
-
         await rating.update({
             stars,
             review

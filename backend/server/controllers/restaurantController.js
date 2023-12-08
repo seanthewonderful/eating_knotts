@@ -42,8 +42,6 @@ const restaurantHandlers = {
 
         const { restName } = req.query
 
-        console.log(restName)
-
         const restaurants = await Restaurant.findAll({
             where: {
                 name: Sequelize.where(

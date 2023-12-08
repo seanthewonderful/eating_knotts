@@ -6,7 +6,6 @@ const userHandlers = {
     getUserById: async (req, res) => {
 
         const user = await User.findByPk(req.params.userId)
-        console.log(user)
 
         if (!user) {
             res.status(400).send({
@@ -95,9 +94,6 @@ const userHandlers = {
 
         const user = await User.scope('withPassword').findByPk(req.session.userId)
 
-        console.log(password)
-        console.log(user.password)
-
         if (!bcryptjs.compareSync(password, user.password)) {
             res.status(401).send({
                 message: "Password incorrect"
@@ -107,9 +103,9 @@ const userHandlers = {
 
         await user.update({
             username: username ?? user.username,
-            // email: email ?? user.email,
-            // firstName: firstName ?? user.firstName,
-            // lastName: lastName ?? user.lastName,
+            email: email ?? user.email,
+            firstName: firstName ?? user.firstName,
+            lastName: lastName ?? user.lastName,
             img: img ?? user.img,
         })
 
@@ -162,12 +158,12 @@ const userHandlers = {
 
         const { password } = req.body
 
-        // if (!bcryptjs.compareSync(password, user.password)) {
-        //     res.status(401).send({
-        //         message: "Password incorrect"
-        //     })
-        //     return
-        // }
+        if (!bcryptjs.compareSync(password, user.password)) {
+            res.status(401).send({
+                message: "Password incorrect"
+            })
+            return
+        }
 
         await user.destroy()
         req.session.userId = null

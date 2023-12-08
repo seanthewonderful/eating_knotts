@@ -60,8 +60,6 @@ const authHandlers = {
             }
         })
 
-        console.log(admin)
-
         if (!admin) {
             res.status(401).send({
                 message: "No username found",

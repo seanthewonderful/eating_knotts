@@ -138,8 +138,10 @@ const userHandlers = {
             return
         }
 
+        const hashedPassword = bcryptjs.hashSync(newPassword, bcryptjs.genSaltSync(5))
+
         await user.update({
-            password: newPassword,
+            password: hashedPassword,
         })
 
         res.status(200).send({
@@ -156,22 +158,22 @@ const userHandlers = {
             return
         }
 
-        const user = await User.findByPk(req.session.userId)
+        const user = await User.findByPk(req.params.userId)
 
         const { password } = req.body
 
-        if (!bcryptjs.compareSync(password, user.password)) {
-            res.status(401).send({
-                message: "Password incorrect"
-            })
-            return
-        }
+        // if (!bcryptjs.compareSync(password, user.password)) {
+        //     res.status(401).send({
+        //         message: "Password incorrect"
+        //     })
+        //     return
+        // }
 
         await user.destroy()
         req.session.userId = null
 
         res.status(200).send({
-            message: "User deleted"
+            message: "User deleted and logged out"
         })
     }
 }

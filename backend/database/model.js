@@ -26,19 +26,19 @@ User.init(
             type: DataTypes.STRING(500),
             allowNull: false,
         },
-        // email: {
-        //     type: DataTypes.STRING(80),
-        //     allowNull: false,
-        //     unique: true,
-        // },
-        // firstName: {
-        //     type: DataTypes.STRING(25),
-        //     allowNull: true,
-        // },
-        // lastName: {
-        //     type: DataTypes.STRING(25),
-        //     allowNull: true,
-        // },
+        email: {
+            type: DataTypes.STRING(80),
+            allowNull: false,
+            unique: true,
+        },
+        firstName: {
+            type: DataTypes.STRING(25),
+            allowNull: true,
+        },
+        lastName: {
+            type: DataTypes.STRING(25),
+            allowNull: true,
+        },
         img: {
             type: DataTypes.STRING(50),
             defaultValue: "/public/proficons/default.png",
@@ -102,19 +102,19 @@ Admin.init(
             type: DataTypes.STRING(500),
             allowNull: false,
         },
-        // email: {
-        //     type: DataTypes.STRING(80),
-        //     allowNull: false,
-        //     unique: true,
-        // },
-        // firstName: {
-        //     type: DataTypes.STRING(25),
-        //     allowNull: true,
-        // },
-        // lastName: {
-        //     type: DataTypes.STRING(25),
-        //     allowNull: true,
-        // },
+        email: {
+            type: DataTypes.STRING(80),
+            allowNull: false,
+            unique: true,
+        },
+        firstName: {
+            type: DataTypes.STRING(25),
+            allowNull: true,
+        },
+        lastName: {
+            type: DataTypes.STRING(25),
+            allowNull: true,
+        },
         img: {
             type: DataTypes.STRING(50),
             defaultValue: "/public/proficons/default.png",

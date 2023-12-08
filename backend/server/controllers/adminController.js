@@ -20,6 +20,12 @@ const adminHandlers = {
 
     createAdmin: async (req, res) => {
 
+        if (!req.session.adminId) {
+            res.status(401).send({
+                message: "Only admins can create a new admin"
+            })
+        }
+
         const { username, password, email, firstName, lastName, img } = req.body
 
         if (await Admin.findOne({
@@ -44,7 +50,7 @@ const adminHandlers = {
 
         req.session.adminId = newAdmin.adminId
 
-        res.status(200).send({
+        res.status(201).send({
             message: "New admin created",
             adminId: newAdmin.adminId
         })

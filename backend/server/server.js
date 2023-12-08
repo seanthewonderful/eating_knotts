@@ -24,11 +24,13 @@ app.use(session({
 const {
     sessionCheck,
     login,
+    adminLogin,
     logout,
 } = authHandlers
 
 app.get('/session-check', sessionCheck)
 app.post('/login', login)
+app.post('/login/admin', adminLogin)
 app.get('/logout', logout)
 
 // Users

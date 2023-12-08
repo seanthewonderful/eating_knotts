@@ -25,16 +25,17 @@ const ratingHandlers = {
 
         if (await Rating.findOne({
             where: [
-                { userId: req.session.userId },
-                { restaurantId: restaurantId }
+                { user_id: req.session.userId },
+                { restaurant_id: restaurantId }
             ]
         })) {
             res.status(400).send({
                 message: "You have already rated this restaurant"
             })
+            return
         }
 
-        await Rating.create({
+        const rating = await Rating.create({
             userId: req.session.userId,
             restaurantId: restaurantId,
             stars: stars,
@@ -42,9 +43,10 @@ const ratingHandlers = {
         })
 
         res.status(200).send({
-            message: "Rating created"
+            message: "Rating created",
+            rating: rating,
         })
-
+        return
     },
 
     updateRating: async (req, res) => {
@@ -52,13 +54,19 @@ const ratingHandlers = {
         const { stars, review } = req.body
         const rating = await Rating.findByPk(req.params.ratingId)
 
-        await Rating.update({
-            stars,
-            review,
-        })
+        // rating.stars = stars ?? rating.stars
+        // rating.review = review ?? rating.review
 
+        // await rating.save()
+
+        await rating.update({
+            stars,
+            review
+        })
+        
         res.status(200).send({
-            message: "Rating updated"
+            message: "Rating updated",
+            rating: rating
         })
     },
 

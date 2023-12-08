@@ -35,8 +35,6 @@ const authHandlers = {
             return
         }
 
-        console.log(user)
-
         if (!bcryptjs.compareSync(password, user.password)) {
             res.status(401).send({
                 message: "Password incorrect"
@@ -46,9 +44,43 @@ const authHandlers = {
 
         req.session.userId = user.userId
 
-        res.status(201).send({
+        res.status(200).send({
             message: "Login accepted, userId in session",
             userId: user.userId
+        })
+    },
+
+    adminLogin: async (req, res) => {
+
+        const { username, password } = req.body
+
+        const admin = await Admin.scope('withPassword').findOne({
+            where: {
+                username: username
+            }
+        })
+
+        console.log(admin)
+
+        if (!admin) {
+            res.status(401).send({
+                message: "No username found",
+            })
+            return
+        }
+
+        if (!bcryptjs.compareSync(password, admin.password)) {
+            res.status(401).send({
+                message: "Administrator password incorrect"
+            })
+            return
+        }
+
+        req.session.adminId = admin.admin
+
+        res.status(200).send({
+            message: "Login accepted, adminId in session",
+            adminId: admin.adminId
         })
     },
 

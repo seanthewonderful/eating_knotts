@@ -15,7 +15,8 @@ const restaurantHandlers = {
         })
 
         res.status(200).send({
-            message: "All restaurants eager loaded with ratings eager loaded with user"
+            message: "All restaurants eager loaded with ratings eager loaded with user",
+            restaurants: allRestaurants
         })
     },
 
@@ -41,7 +42,9 @@ const restaurantHandlers = {
 
         const { restName } = req.query
 
-        const restaurant = await Restaurant.findOne({
+        console.log(restName)
+
+        const restaurants = await Restaurant.findAll({
             where: {
                 name: Sequelize.where(
                     Sequelize.fn(
@@ -52,17 +55,10 @@ const restaurantHandlers = {
             }
         })
 
-        if (restaurant) {
-            res.status(200).send({
-                message: "Restaurant found",
-                restaurant: restaurant
-            })
-        } else {
-            res.status(400).send({
-                message: "No matching restaurants found",
-                restaurant: null
-            })
-        }
+        res.status(200).send({
+            message: "Matching restaurants:",
+            restaurant: restaurants
+        })
     },
 
     getRestaurantRatings: async (req, res) => {},
@@ -130,7 +126,8 @@ const restaurantHandlers = {
         })
 
         res.status(200).send({
-            message: "Restaurant details updated"
+            message: "Restaurant details updated",
+            restaurant: restaurant
         })
     },
 

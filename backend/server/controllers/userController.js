@@ -1,11 +1,12 @@
-import { User, Restaurant, Rating, db } from "../../database/model";
+import { User, Restaurant, Rating, db } from "../../database/model.js";
 import bcryptjs from 'bcryptjs'
 
-export default userHandlers = {
+const userHandlers = {
 
     getUserById: async (req, res) => {
 
         const user = await User.findByPk(req.params.userId)
+        console.log(user)
 
         if (!user) {
             res.status(400).send({
@@ -54,9 +55,9 @@ export default userHandlers = {
         const user = await User.create({
             username,
             password,
-            email,
-            firstName,
-            lastName,
+            // email,
+            // firstName,
+            // lastName,
             img,
         })
 
@@ -79,7 +80,23 @@ export default userHandlers = {
 
         const { username, password, email, firstName, lastName, img } = req.body
 
-        const user = await User.findByPk(req.session.userId)
+        if (await User.findOne({ where: { username }})) {
+            res.status(401).send({
+                message: "Username already in use"
+            })
+            return
+        } 
+        // else if (await User.findOne({ where: { email }})) {
+        //     res.status(401).send({
+        //         message: "Email already in use"
+        //     })
+        //     return
+        // }
+
+        const user = await User.scope('withPassword').findByPk(req.session.userId)
+
+        console.log(password)
+        console.log(user.password)
 
         if (!bcryptjs.compareSync(password, user.password)) {
             res.status(401).send({
@@ -90,9 +107,9 @@ export default userHandlers = {
 
         await user.update({
             username: username ?? user.username,
-            email: email ?? user.email,
-            firstName: firstName ?? user.firstName,
-            lastName: lastName ?? user.lastName,
+            // email: email ?? user.email,
+            // firstName: firstName ?? user.firstName,
+            // lastName: lastName ?? user.lastName,
             img: img ?? user.img,
         })
 
@@ -110,7 +127,7 @@ export default userHandlers = {
             return
         }
 
-        const user = await User.findByPk(req.session.userId)
+        const user = await User.scope('withPassword').findByPk(req.session.userId)
         
         const { oldPassword, newPassword } = req.body
 
@@ -158,3 +175,5 @@ export default userHandlers = {
         })
     }
 }
+
+export default userHandlers

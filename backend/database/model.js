@@ -57,12 +57,12 @@ User.init(
                     user.password = hashedPassword
                 }
             },
-            beforeUpdate: (user, options) => {
-                if (user.password) {
-                    const hashedPassword = bcryptjs.hashSync(user.password, bcryptjs.genSaltSync(5))
-                    user.password = hashedPassword
-                }
-            }
+            // beforeUpdate: (user, options) => {
+            //     if (user.password) {
+            //         const hashedPassword = bcryptjs.hashSync(user.password, bcryptjs.genSaltSync(5))
+            //         user.password = hashedPassword
+            //     }
+            // }
         },
         defaultScope: {
             attributes: {

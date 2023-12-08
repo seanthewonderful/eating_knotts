@@ -1,6 +1,6 @@
 import { User, Restaurant, Rating, db } from '../../database/model.js'
 
-export default ratingHandlers = {
+const ratingHandlers = {
 
     getUserRatings: async (req, res) => {
 
@@ -87,3 +87,5 @@ export default ratingHandlers = {
         })
     }
 }
+
+export default ratingHandlers

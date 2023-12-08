@@ -29,7 +29,7 @@ const {
 
 app.get('/session-check', sessionCheck)
 app.post('/login', login)
-app.post('/logout', logout)
+app.get('/logout', logout)
 
 // Users
 const {

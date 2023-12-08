@@ -1,6 +1,6 @@
 import { Admin, User, Restaurant, Rating, FoodItem, MealType, db } from '../../database/model.js'
 
-export default adminHandlers = {
+const adminHandlers = {
 
     getAdminById: async (req, res) => {
 
@@ -109,3 +109,5 @@ export default adminHandlers = {
         })
     }
 }
+
+export default adminHandlers

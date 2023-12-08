@@ -1,7 +1,7 @@
-import { Restaurant, User, Rating, Land, db } from "../../database/model";
+import { Restaurant, User, Rating, Land, db } from "../../database/model.js";
 import { Op, Sequelize } from "sequelize";
 
-export default restaurantHandlers = {
+const restaurantHandlers = {
 
     getAllRestaurants: async (req, res) => {
 
@@ -151,3 +151,5 @@ export default restaurantHandlers = {
         })
     }
 }
+
+export default restaurantHandlers

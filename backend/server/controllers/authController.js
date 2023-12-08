@@ -1,7 +1,7 @@
 import { User, Admin, db } from '../../database/model.js'
 import bcryptjs from 'bcryptjs'
 
-export default authHandlers = {
+const authHandlers = {
 
     sessionCheck: async (req, res) => {
 
@@ -35,6 +35,8 @@ export default authHandlers = {
             return
         }
 
+        console.log(user)
+
         if (!bcryptjs.compareSync(password, user.password)) {
             res.status(401).send({
                 message: "Password incorrect"
@@ -58,3 +60,5 @@ export default authHandlers = {
         })
     }
 }
+
+export default authHandlers

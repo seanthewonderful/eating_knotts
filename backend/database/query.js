@@ -1,5 +1,5 @@
 import { User, Restaurant, db } from './model.js'
 
-console.log(await Restaurant.findAll())
+const user8 = await User.scope('withPassword').findByPk(8)
 
 await db.close()

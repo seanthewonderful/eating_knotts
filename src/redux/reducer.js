@@ -4,7 +4,7 @@ const initialState = {
     restaurantId: null,
 }
 
-const reduceer = (state=initialState, action) {
+const reduceer = (state=initialState, action) => {
     switch (action.type) {
         case 'USER_AUTH':
             return {

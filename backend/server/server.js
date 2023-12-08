@@ -84,5 +84,17 @@ app.post('/restaurant/create', createRestaurant)
 app.put('/restaurant/update/:restaurantId', updateRestaurant)
 app.delete('/restaurant/delete/:restaurantId', deleteRestaurant)
 
+// Ratings
+const {
+    getUserRatings,
+    createRating,
+    updateRating,
+    deleteRating,
+} = ratingHandlers
+
+app.get('/ratings/user-ratings/:userId', getUserRatings)
+app.post('/rating/create/:restaurantId', createRating)
+app.put('/rating/update/:ratingId', updateRating)
+app.delete('/rating/delete/:ratingId', deleteRating)
 
 ViteExpress.listen(app, 9009, () => console.log(`Knotted up at http://localhost:9009`))

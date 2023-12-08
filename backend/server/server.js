@@ -20,20 +20,12 @@ app.use(session({
     resave: false,
 }))
 
-// Authentication
 const {
     sessionCheck,
     login,
     adminLogin,
     logout,
 } = authHandlers
-
-app.get('/session-check', sessionCheck)
-app.post('/login', login)
-app.post('/login/admin', adminLogin)
-app.get('/logout', logout)
-
-// Users
 const {
     getUserById,
     getUserByUsername,
@@ -42,28 +34,12 @@ const {
     updateUserPassword,
     deleteUser,
 } = userHandlers
-
-app.get('/user/id/:userId', getUserById)
-app.get('/user/username/:username', getUserByUsername)
-app.post('/user/create', createUser)
-app.put('/user/update/:userId', updateUser)
-app.put('/user/update/password/:userId', updateUserPassword)
-app.delete('/user/delete/:userId', deleteUser)
-
-// Admins
 const {
     getAdminById,
     createAdmin,
     updateAdmin,
     deleteAdmin,
 } = adminHandlers
-
-app.get('/admin/id/:adminId', getAdminById)
-app.post('/admin/create', createAdmin)
-app.put('/admin/update/:adminId', updateAdmin)
-app.delete('/admin/delete/:adminId', deleteAdmin)
-
-// Restaurants
 const {
     getAllRestaurants,
     getRestaurantsByLand,
@@ -75,7 +51,34 @@ const {
     updateRestaurant,
     deleteRestaurant,
 } = restaurantHandlers
+const {
+    getUserRatings,
+    createRating,
+    updateRating,
+    deleteRating,
+} = ratingHandlers
 
+// Authentication
+app.get('/session-check', sessionCheck)
+app.post('/login', login)
+app.post('/login/admin', adminLogin)
+app.get('/logout', logout)
+
+// Users
+app.get('/user/id/:userId', getUserById)
+app.get('/user/username/:username', getUserByUsername)
+app.post('/user/create', createUser)
+app.put('/user/update/:userId', updateUser)
+app.put('/user/update/password/:userId', updateUserPassword)
+app.delete('/user/delete/:userId', deleteUser)
+
+// Admins
+app.get('/admin/id/:adminId', getAdminById)
+app.post('/admin/create', createAdmin)
+app.put('/admin/update/:adminId', updateAdmin)
+app.delete('/admin/delete/:adminId', deleteAdmin)
+
+// Restaurants
 app.get('/restaurants/all', getAllRestaurants)
 app.get('/restaurants/land/:landId', getRestaurantsByLand)
 app.get('/restaurant/name', getRestaurantByName)
@@ -87,13 +90,6 @@ app.put('/restaurant/update/:restaurantId', updateRestaurant)
 app.delete('/restaurant/delete/:restaurantId', deleteRestaurant)
 
 // Ratings
-const {
-    getUserRatings,
-    createRating,
-    updateRating,
-    deleteRating,
-} = ratingHandlers
-
 app.get('/ratings/user-ratings/:userId', getUserRatings)
 app.post('/rating/create/:restaurantId', createRating)
 app.put('/rating/update/:ratingId', updateRating)

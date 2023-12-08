@@ -61,5 +61,28 @@ app.post('/admin/create', createAdmin)
 app.put('/admin/update/:adminId', updateAdmin)
 app.delete('/admin/delete/:adminId', deleteAdmin)
 
+// Restaurants
+const {
+    getAllRestaurants,
+    getRestaurantsByLand,
+    getRestaurantByName,
+    getRestaurantRatingAvg,
+    getRestaurantRatings,
+    getUserRatingOfRestaurant,
+    createRestaurant,
+    updateRestaurant,
+    deleteRestaurant,
+} = restaurantHandlers
+
+app.get('/restaurants/all', getAllRestaurants)
+app.get('/restaurants/land/:landId', getRestaurantsByLand)
+app.get('/restaurant/name', getRestaurantByName)
+app.get('/restaurant/rating/:restaurantId', getRestaurantRatings)
+app.get('/restaurant/avg-rating/:restaurantId', getRestaurantRatingAvg)
+app.get('/restaurant/rating/by-user/:restaurantId', getUserRatingOfRestaurant)
+app.post('/restaurant/create', createRestaurant)
+app.put('/restaurant/update/:restaurantId', updateRestaurant)
+app.delete('/restaurant/delete/:restaurantId', deleteRestaurant)
+
 
 ViteExpress.listen(app, 9009, () => console.log(`Knotted up at http://localhost:9009`))

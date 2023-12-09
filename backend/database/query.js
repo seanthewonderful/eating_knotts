@@ -1,6 +1,20 @@
-import { User, Restaurant, db } from './model.js'
+import { User, Restaurant, Rating, Land, db } from './model.js'
 
-const user8 = await User.scope('withPassword').findByPk(6)
-console.log(user8)
+const allRestaurants = await Restaurant.findAll({
+    include: [
+        {
+            model: Rating,
+            include: {
+                model: User
+            }
+        },
+        {
+            model: Land
+        }
+        ]
+    }
+)
+
+console.log(allRestaurants)
 
 await db.close()

@@ -26,19 +26,19 @@ User.init(
             type: DataTypes.STRING(500),
             allowNull: false,
         },
-        // email: {
-        //     type: DataTypes.STRING(80),
-        //     allowNull: false,
-        //     unique: true,
-        // },
-        // firstName: {
-        //     type: DataTypes.STRING(25),
-        //     allowNull: true,
-        // },
-        // lastName: {
-        //     type: DataTypes.STRING(25),
-        //     allowNull: true,
-        // },
+        email: {
+            type: DataTypes.STRING(80),
+            allowNull: false,
+            unique: true,
+        },
+        firstName: {
+            type: DataTypes.STRING(25),
+            allowNull: true,
+        },
+        lastName: {
+            type: DataTypes.STRING(25),
+            allowNull: true,
+        },
         img: {
             type: DataTypes.STRING(50),
             defaultValue: "/public/proficons/default.png",
@@ -50,19 +50,25 @@ User.init(
             beforeCreate: (user, options) => {
                 const hashedPassword = bcryptjs.hashSync(user.password, bcryptjs.genSaltSync(5))
                 user.password = hashedPassword
+                user.firstName = user.firstName.toLowerCase()
+                user.lastName = user.lastName.toLowerCase()
             },
             beforeBulkCreate: (users, options) => {
                 for (let user of users) {
                     const hashedPassword = bcryptjs.hashSync(user.password, bcryptjs.genSaltSync(5))
                     user.password = hashedPassword
+                    user.firstName = user.firstName.toLowerCase()
+                    user.lastName = user.lastName.toLowerCase()
                 }
             },
-            // beforeUpdate: (user, options) => {
-            //     if (user.password) {
-            //         const hashedPassword = bcryptjs.hashSync(user.password, bcryptjs.genSaltSync(5))
-            //         user.password = hashedPassword
-            //     }
-            // }
+            beforeUpdate: (user, options) => {
+                // if (user.password) {
+                //     const hashedPassword = bcryptjs.hashSync(user.password, bcryptjs.genSaltSync(5))
+                //     user.password = hashedPassword
+                // }
+                user.firstName = user.firstName.toLowerCase()
+                user.lastName = user.lastName.toLowerCase()
+            }
         },
         defaultScope: {
             attributes: {
@@ -102,19 +108,19 @@ Admin.init(
             type: DataTypes.STRING(500),
             allowNull: false,
         },
-        // email: {
-        //     type: DataTypes.STRING(80),
-        //     allowNull: false,
-        //     unique: true,
-        // },
-        // firstName: {
-        //     type: DataTypes.STRING(25),
-        //     allowNull: true,
-        // },
-        // lastName: {
-        //     type: DataTypes.STRING(25),
-        //     allowNull: true,
-        // },
+        email: {
+            type: DataTypes.STRING(80),
+            allowNull: false,
+            unique: true,
+        },
+        firstName: {
+            type: DataTypes.STRING(25),
+            allowNull: true,
+        },
+        lastName: {
+            type: DataTypes.STRING(25),
+            allowNull: true,
+        },
         img: {
             type: DataTypes.STRING(50),
             defaultValue: "/public/proficons/default.png",
@@ -126,18 +132,25 @@ Admin.init(
             beforeCreate: (admin, options) => {
                 const hashedPassword = bcryptjs.hashSync(admin.password, bcryptjs.genSaltSync(5))
                 admin.password = hashedPassword
+                admin.firstName = admin.firstName.toLowerCase()
+                admin.lastName = admin.lastName.toLowerCase()
             },
             beforeBulkCreate: (admins, options) => {
                 for (let admin of admins) {
                     const hashedPassword = bcryptjs.hashSync(admin.password, bcryptjs.genSaltSync(5))
                     admin.password = hashedPassword
+                    admin.firstName = admin.firstName.toLowerCase()
+                    admin.lastName = admin.lastName.toLowerCase()
                 }
             },
             beforeUpdate: (admin, options) => {
-                if (admin.password) {
-                    const hashedPassword = bcryptjs.hashSync(admin.password, bcryptjs.genSaltSync(5))
-                    admin.password = hashedPassword
-                }
+                // if (admin.password) {
+                    //     const hashedPassword = bcryptjs.hashSync(admin.password, bcryptjs.genSaltSync(5))
+                    //     admin.password = hashedPassword
+                    // }
+                admin.firstName = admin.firstName.toLowerCase()
+                admin.lastName = admin.lastName.toLowerCase()
+
             }
         },
         defaultScope: {

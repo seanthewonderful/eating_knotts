@@ -6,16 +6,22 @@ const restaurantHandlers = {
     getAllRestaurants: async (req, res) => {
 
         const allRestaurants = await Restaurant.findAll({
-            include: {
-                model: Rating,
-                include: {
-                    model: User
+            include: [
+                {
+                    model: Rating,
+                    include: {
+                        model: User
+                    }
+                },
+                {
+                    model: Land
                 }
+                ]
             }
-        })
+        )
 
         res.status(200).send({
-            message: "All restaurants eager loaded with ratings eager loaded with user",
+            message: "All restaurants eager loaded with Land, and eager with ratings which eager loads with user",
             restaurants: allRestaurants
         })
     },
@@ -24,21 +30,19 @@ const restaurantHandlers = {
 
         const { landId } = req.params
 
-        const restaurants = await Restaurant.findAll({
-            where: {
-                landId: landId
+        const landWithRestaurants = await Land.findByPk(landId, {
+            include: {
+                model: Restaurant
             }
         })
 
-        const land = await Land.findByPk(landId)
-
         res.status(200).send({
-            message: `Here are all the restaurants in ${land.name}`,
-            restaurants: restaurants,
+            message: `Here are all the restaurants in ${landWithRestaurants.name}`,
+            landWithRestaurants: landWithRestaurants
         })
     },
 
-    getRestaurantByName: async (req, res) => {
+    getRestaurantsByName: async (req, res) => {
 
         const { restName } = req.query
 
@@ -56,6 +60,27 @@ const restaurantHandlers = {
         res.status(200).send({
             message: "Matching restaurants:",
             restaurant: restaurants
+        })
+    },
+
+    getRestaurantById: async (req, res) => {
+
+        const { restaurantId } = req.params
+
+        const restaurant = await Restaurant.findByPk(restaurantId, {
+            include: [
+                {
+                    model: Land
+                },
+                {
+                    model: Rating
+                }
+            ]
+        })
+
+        res.status(200).send({
+            message: "Restaurant found",
+            restaurant: restaurant
         })
     },
 

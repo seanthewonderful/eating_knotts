@@ -53,13 +53,14 @@ Server + endpoints
 
 
 Browser Router - what routes?
-- []"/"
-    - [ ]map
-- []"/profile"
-- []"/restaurants"
+- [x]"/"
+    - []map
+- [x]"/profile/:id"
+- [x]"/restaurants"
     - []search option
 - []"/restaurant/:restId"
-- [] error handling
+- [x] "/land/restaurants"
+- [x] error handling
 
 
 Redux store

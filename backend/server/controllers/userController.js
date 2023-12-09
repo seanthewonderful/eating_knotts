@@ -18,7 +18,6 @@ const userHandlers = {
                 user: user
             })
         }
-
     },
 
     getUserByUsername: async (req, res) => {

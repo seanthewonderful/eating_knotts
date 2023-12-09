@@ -1,7 +1,13 @@
-import React from 'react'
+import { NavLink, Outlet } from 'react-router-dom'
 
 export default function Navbar() {
   return (
-    <div>Navbar</div>
+    <div>
+      <h1>Navbar</h1>
+
+      <main>
+        <Outlet />
+      </main>
+    </div>
   )
 }

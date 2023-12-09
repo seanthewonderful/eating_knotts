@@ -53,9 +53,9 @@ Server + endpoints
 
 
 Browser Router - what routes?
-- []"/"
-    - [ ]map
-- []"/profile"
+- [x]"/"
+    - []map
+- [x]"/profile/:id"
 - []"/restaurants"
     - []search option
 - []"/restaurant/:restId"

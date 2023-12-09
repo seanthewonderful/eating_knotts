@@ -4,7 +4,7 @@ const initialState = {
     restaurantId: null,
 }
 
-const reduceer = (state=initialState, action) => {
+const reducer = (state=initialState, action) => {
     switch (action.type) {
         case 'USER_AUTH':
             return {
@@ -28,3 +28,5 @@ const reduceer = (state=initialState, action) => {
             return state
     }
 }
+
+export default reducer

@@ -6,16 +6,22 @@ const restaurantHandlers = {
     getAllRestaurants: async (req, res) => {
 
         const allRestaurants = await Restaurant.findAll({
-            include: {
-                model: Rating,
-                include: {
-                    model: User
+            include: [
+                {
+                    model: Rating,
+                    include: {
+                        model: User
+                    }
+                },
+                {
+                    model: Land
                 }
+                ]
             }
-        })
+        )
 
         res.status(200).send({
-            message: "All restaurants eager loaded with ratings eager loaded with user",
+            message: "All restaurants eager loaded with Land, and eager with ratings which eager loads with user",
             restaurants: allRestaurants
         })
     },

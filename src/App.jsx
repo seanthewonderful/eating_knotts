@@ -6,19 +6,31 @@ import {
 } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import NotFound from './pages/NotFound.jsx'
-import Profile from './pages/Profile.jsx'
+import Profile, { profileLoader } from './pages/Profile.jsx'
 import Navbar from './components/Navbar.jsx'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import AllRestaurants, { allRestaurantsLoader } from './pages/Restaurants.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Navbar />} >
-      <Route index element={<Home />} />
+      <Route 
+        index 
+        element={<Home />} 
+        errorElement={<NotFound />}
+      />
       <Route 
         path='profile/:userId'
         element={<Profile />}
         loader={profileLoader}
+        errorElement={<NotFound />} 
       />
+      <Route 
+        path='restaurants'
+        element={<AllRestaurants />}
+        loader={allRestaurantsLoader}
+        errorElement={<NotFound />}
+      />
+
 
       <Route path='*' element={<NotFound />} />
     </Route>
@@ -28,9 +40,7 @@ const router = createBrowserRouter(
 function App() {
 
   return (
-    <>
-      Allo
-    </>
+    <RouterProvider router={router} />
   )
 }
 

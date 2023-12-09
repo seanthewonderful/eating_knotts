@@ -5,14 +5,15 @@ import { toTitleCase } from '../assets/funx.js'
 export default function Profile() {
 
   const { user } = useLoaderData()
+  console.log(user)
 
   return (
     <div>
       <h1>Profile - {user.username}</h1>
       <ul>
         <li>User ID: {user.userId}</li>
-        <li>Email: {user.email}</li>
-        <li>Name: {user.firstName} {user.lastName}</li>
+        <li>Email: {toTitleCase(user.email)}</li>
+        <li>Name: {toTitleCase(user.firstName)} {toTitleCase(user.lastName)}</li>
       </ul>
     </div>
   )
@@ -22,8 +23,9 @@ export const profileLoader = async ({ params }) => {
   const { userId } = params
 
   const { data } = await axios.get(`/user/id/${userId}`)
+  console.log(data)
 
-  if (data.status !== 200) {
+  if (data.status == 400) {
     throw Error("Error loading user profile!")
   }
 

@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound.jsx'
 import Profile, { profileLoader } from './pages/Profile.jsx'
 import Navbar from './components/Navbar.jsx'
 import AllRestaurants, { allRestaurantsLoader } from './pages/Restaurants.jsx'
+import LandRestaurants, { landRestaurantLoader } from './pages/LandRestaurants.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,7 +30,14 @@ const router = createBrowserRouter(
         element={<AllRestaurants />}
         loader={allRestaurantsLoader}
         errorElement={<NotFound />}
-      />
+      >
+        <Route 
+          path='land/:landId'
+          element={<LandRestaurants />}
+          loader={landRestaurantLoader}
+          errorElement={<NotFound />}
+        />
+      </Route>
 
 
       <Route path='*' element={<NotFound />} />

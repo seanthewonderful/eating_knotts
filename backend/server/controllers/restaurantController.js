@@ -30,17 +30,16 @@ const restaurantHandlers = {
 
         const { landId } = req.params
 
-        const restaurants = await Restaurant.findAll({
-            where: {
-                landId: landId
+        const landWithRestaurants = await Land.findByPk(landId, {
+            include: {
+                model: Restaurant
             }
         })
-
-        const land = await Land.findByPk(landId)
+        console.log(landWithRestaurants)
 
         res.status(200).send({
-            message: `Here are all the restaurants in ${land.name}`,
-            restaurants: restaurants,
+            message: `Here are all the restaurants in ${landWithRestaurants.name}`,
+            landWithRestaurants: landWithRestaurants
         })
     },
 

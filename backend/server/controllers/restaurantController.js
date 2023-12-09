@@ -67,7 +67,16 @@ const restaurantHandlers = {
 
         const { restaurantId } = req.params
 
-        const restaurant = await Restaurant.findByPk(restaurantId)
+        const restaurant = await Restaurant.findByPk(restaurantId, {
+            include: [
+                {
+                    model: Land
+                },
+                {
+                    model: Rating
+                }
+            ]
+        })
 
         res.status(200).send({
             message: "Restaurant found",

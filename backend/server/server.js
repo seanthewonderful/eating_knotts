@@ -82,7 +82,7 @@ app.delete('/api/admin/delete/:adminId', deleteAdmin)
 // Restaurants
 app.get('/api/restaurants/all', getAllRestaurants)
 app.get('/api/restaurants/land/:landId', getRestaurantsByLand)
-app.get('/api/restaurants/name', getRestaurantByName)
+app.get('/api/restaurants/name', getRestaurantsByName)
 app.get('/api/restaurant/id/:restaurantId', getRestaurantById)
 app.get('/api/restaurant/rating/:restaurantId', getRestaurantRatings)
 app.get('/api/restaurant/avg-rating/:restaurantId', getRestaurantRatingAvg)

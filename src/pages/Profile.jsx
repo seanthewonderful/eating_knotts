@@ -5,7 +5,6 @@ import { toTitleCase } from '../assets/funx.js'
 export default function Profile() {
 
   const { user } = useLoaderData()
-  console.log(user)
 
   return (
     <div>
@@ -22,8 +21,7 @@ export default function Profile() {
 export const profileLoader = async ({ params }) => {
   const { userId } = params
 
-  const { data } = await axios.get(`/user/id/${userId}`)
-  console.log(data)
+  const { data } = await axios.get(`/api/user/id/${userId}`)
 
   if (data.status == 400) {
     throw Error("Error loading user profile!")

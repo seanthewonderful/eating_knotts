@@ -35,7 +35,6 @@ const restaurantHandlers = {
                 model: Restaurant
             }
         })
-        console.log(landWithRestaurants)
 
         res.status(200).send({
             message: `Here are all the restaurants in ${landWithRestaurants.name}`,
@@ -43,7 +42,7 @@ const restaurantHandlers = {
         })
     },
 
-    getRestaurantByName: async (req, res) => {
+    getRestaurantsByName: async (req, res) => {
 
         const { restName } = req.query
 
@@ -61,6 +60,18 @@ const restaurantHandlers = {
         res.status(200).send({
             message: "Matching restaurants:",
             restaurant: restaurants
+        })
+    },
+
+    getRestaurantById: async (req, res) => {
+
+        const { restaurantId } = req.params
+
+        const restaurant = await Restaurant.findByPk(restaurantId)
+
+        res.status(200).send({
+            message: "Restaurant found",
+            restaurant: restaurant
         })
     },
 

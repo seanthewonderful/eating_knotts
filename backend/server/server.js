@@ -43,7 +43,8 @@ const {
 const {
     getAllRestaurants,
     getRestaurantsByLand,
-    getRestaurantByName,
+    getRestaurantsByName,
+    getRestaurantById,
     getRestaurantRatingAvg,
     getRestaurantRatings,
     getUserRatingOfRestaurant,
@@ -59,40 +60,41 @@ const {
 } = ratingHandlers
 
 // Authentication
-app.get('/session-check', sessionCheck)
-app.post('/login', login)
-app.post('/login/admin', adminLogin)
-app.get('/logout', logout)
+app.get('/api/session-check', sessionCheck)
+app.post('/api/login', login)
+app.post('/api/login/admin', adminLogin)
+app.get('/api/logout', logout)
 
 // Users
-app.get('/user/id/:userId', getUserById)
-app.get('/user/username/:username', getUserByUsername)
-app.post('/user/create', createUser)
-app.put('/user/update/:userId', updateUser)
-app.put('/user/update/password/:userId', updateUserPassword)
-app.delete('/user/delete/:userId', deleteUser)
+app.get('/api/user/id/:userId', getUserById)
+app.get('/api/user/username/:username', getUserByUsername)
+app.post('/api/user/create', createUser)
+app.put('/api/user/update/:userId', updateUser)
+app.put('/api/user/update/password/:userId', updateUserPassword)
+app.delete('/api/user/delete/:userId', deleteUser)
 
 // Admins
-app.get('/admin/id/:adminId', getAdminById)
-app.post('/admin/create', createAdmin)
-app.put('/admin/update/:adminId', updateAdmin)
-app.delete('/admin/delete/:adminId', deleteAdmin)
+app.get('/api/admin/id/:adminId', getAdminById)
+app.post('/api/admin/create', createAdmin)
+app.put('/api/admin/update/:adminId', updateAdmin)
+app.delete('/api/admin/delete/:adminId', deleteAdmin)
 
 // Restaurants
-app.get('/restaurants/all', getAllRestaurants)
-app.get('/restaurants/land/:landId', getRestaurantsByLand)
-app.get('/restaurant/name', getRestaurantByName)
-app.get('/restaurant/rating/:restaurantId', getRestaurantRatings)
-app.get('/restaurant/avg-rating/:restaurantId', getRestaurantRatingAvg)
-app.get('/restaurant/rating/by-user/:restaurantId', getUserRatingOfRestaurant)
-app.post('/restaurant/create', createRestaurant)
-app.put('/restaurant/update/:restaurantId', updateRestaurant)
-app.delete('/restaurant/delete/:restaurantId', deleteRestaurant)
+app.get('/api/restaurants/all', getAllRestaurants)
+app.get('/api/restaurants/land/:landId', getRestaurantsByLand)
+app.get('/api/restaurants/name', getRestaurantByName)
+app.get('/api/restaurant/id/:restaurantId', getRestaurantById)
+app.get('/api/restaurant/rating/:restaurantId', getRestaurantRatings)
+app.get('/api/restaurant/avg-rating/:restaurantId', getRestaurantRatingAvg)
+app.get('/api/restaurant/rating/by-user/:restaurantId', getUserRatingOfRestaurant)
+app.post('/api/restaurant/create', createRestaurant)
+app.put('/api/restaurant/update/:restaurantId', updateRestaurant)
+app.delete('/api/restaurant/delete/:restaurantId', deleteRestaurant)
 
 // Ratings
-app.get('/ratings/user-ratings/:userId', getUserRatings)
-app.post('/rating/create/:restaurantId', createRating)
-app.put('/rating/update/:ratingId', updateRating)
-app.delete('/rating/delete/:ratingId', deleteRating)
+app.get('/api/ratings/user-ratings/:userId', getUserRatings)
+app.post('/api/rating/create/:restaurantId', createRating)
+app.put('/api/rating/update/:ratingId', updateRating)
+app.delete('/api/rating/delete/:ratingId', deleteRating)
 
 ViteExpress.listen(app, 9009, () => console.log(`Knotted up at http://localhost:9009`))

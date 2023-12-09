@@ -1,21 +1,13 @@
 import axios from 'axios'
 import { useLoaderData, NavLink } from 'react-router-dom'
-
+import Restaurant from '../components/Restaurant.jsx'
 
 export default function AllRestaurants() {
 
     const { restaurants } = useLoaderData()
 
     const allRestaurants = restaurants.map(restaurant => {
-        return (
-            <>
-            <h4>{restaurant.name}</h4>
-            <ul>
-                <li><NavLink to={`restaurants/land/${restaurant.land.landId}`}>{restaurant.land.name}</NavLink></li>
-                <li>{restaurant.expense}</li>
-            </ul>
-            </>
-        )
+        return <Restaurant key={restaurant.restaurantId} restaurant={restaurant} />
     })
 
   return (
@@ -27,7 +19,7 @@ export default function AllRestaurants() {
 
 export const allRestaurantsLoader = async() => {
 
-    const { data } = await axios.get('/restaurants/all')
+    const { data } = await axios.get('/api/restaurants/all')
 
     return data
 }

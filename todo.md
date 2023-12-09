@@ -56,10 +56,11 @@ Browser Router - what routes?
 - [x]"/"
     - []map
 - [x]"/profile/:id"
-- []"/restaurants"
+- [x]"/restaurants"
     - []search option
 - []"/restaurant/:restId"
-- [] error handling
+- [x] "/land/restaurants"
+- [x] error handling
 
 
 Redux store

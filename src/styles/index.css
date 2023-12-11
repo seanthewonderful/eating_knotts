@@ -11,6 +11,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  height: 100vh;
+
+}
+
+* {
+  box-sizing: border-box;
+  width: 100vw;
 }
 
 a {
@@ -63,10 +71,24 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #70296f;
+    background-color: #763076;
   }
 }
 
+#navLinks {
+  border: purple 1px solid;
+}
+
 #navLinks a.active {
-  color: gold
+  color: gold;
+  z-index: 5;
+}
+
+/* #map {
+  height: 400px;
+} */
+
+/* sizing of map container */
+.leaflet-container {
+  height: 80vh;
 }

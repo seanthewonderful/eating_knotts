@@ -79,5 +79,8 @@ Create Leaflet map
 - [x] Create markers
     - [x] Use loader data? Or just load it in with useEffect? 
     - [x] Create custom marker icons
-- [] create Popup.jsx
-- [] create Marker.jsx
+- [x] create Popup.jsx
+- [x] create Marker.jsx
+- [] Popup box styling
+- [x] Popup link to restaurant page
+

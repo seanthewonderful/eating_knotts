@@ -13,7 +13,6 @@
   -moz-osx-font-smoothing: grayscale;
 
   height: 100vh;
-
 }
 
 main {
@@ -70,8 +69,14 @@ button:focus-visible {
   }
 }
 
-#navLinks {
+#navbar {
   border: purple 1px solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#navLinks {
   display: flex;
   flex-direction: row;
 }
@@ -82,7 +87,7 @@ button:focus-visible {
 
 /* sizing of map container */
 .leaflet-container {
-  height: 80vh;
+  height: 90vh;
 }
 /* .leaflet-popup {
   max-width: 50vw;

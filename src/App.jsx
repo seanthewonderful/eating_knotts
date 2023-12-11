@@ -11,6 +11,7 @@ import Navbar from './components/Navbar.jsx'
 import AllRestaurants, { allRestaurantsLoader } from './pages/Restaurants.jsx'
 import LandRestaurants, { landRestaurantLoader } from './pages/LandRestaurants.jsx'
 import RestaurantProfile, { restaurantProfileLoader } from './pages/RestaurantProfile.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
       <Route 
         index 
         element={<Home />} 
+        loader={allRestaurantsLoader}
         errorElement={<NotFound />}
       />
       <Route 

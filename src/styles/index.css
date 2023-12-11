@@ -16,7 +16,7 @@
 
 }
 
-* {
+main {
   box-sizing: border-box;
   width: 100vw;
 }
@@ -36,11 +36,6 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
@@ -77,18 +72,27 @@ button:focus-visible {
 
 #navLinks {
   border: purple 1px solid;
+  display: flex;
+  flex-direction: row;
 }
 
 #navLinks a.active {
   color: gold;
-  z-index: 5;
 }
-
-/* #map {
-  height: 400px;
-} */
 
 /* sizing of map container */
 .leaflet-container {
   height: 80vh;
 }
+/* .leaflet-popup {
+  max-width: 50vw;
+} */
+/* .leaflet-popup-content-wrapper {
+  max-width: 100%;
+} */
+/* .leaflet-popup-content {
+  min-width: 90%;
+} */
+/* .dx-visibility-change-handler {
+  width: 100%;
+} */

@@ -2,7 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 
 export default function Navbar() {
   return (
-    <div>
+    <div id="main">
       <div id='navLinks'>
       <h1>Navbar</h1>
         

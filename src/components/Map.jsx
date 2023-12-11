@@ -1,27 +1,21 @@
 import { Icon, Point } from "leaflet"
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from "react-leaflet"
 import { Container, Row, Col } from "react-bootstrap"
+import MapMarker from "./MapMarker.jsx"
 
 export default function Map({ allRestaurants }) {
-
-    const restaurantIcon = new Icon({
-        iconUrl: `https://api.geoapify.com/v1/icon/?type=material&color=%23a404fb&icon=restaurant&noWhiteCircle&apiKey=${import.meta.env.VITE_GEOAPIFY_KEY}`,
-    })
-
-    const liquorIcon = new Icon({
-        iconUrl: `https://api.geoapify.com/v1/icon/?type=material&color=%23a404fb&icon=local_bar&noWhiteCircle&apiKey=${import.meta.env.VITE_GEOAPIFY_KEY}`,
-        // iconSize: [32, 46]
-    })
     
     const markers = allRestaurants.map((rest) => {
-        return {
-            geocode: [rest.xCoord, rest.yCoord],
-            // popUp: `<h5>${rest.name}</h5><ul><li>${rest.expense}</li><li>${rest.description}</li></ul>`
-            name: rest.name,
-            icon: rest.name === 'Cantina Del Sur' || rest.name === 'Calico Saloon' ? liquorIcon : restaurantIcon,
-            expense: rest.expense,
-            description: rest.description
-        }
+
+        return <MapMarker key={rest.restaurantId} restaurant={rest} />
+        // return {
+        //     geocode: [rest.xCoord, rest.yCoord],
+        //     // popUp: `<h5>${rest.name}</h5><ul><li>${rest.expense}</li><li>${rest.description}</li></ul>`
+        //     name: rest.name,
+        //     icon: rest.name === 'Cantina Del Sur' || rest.name === 'Calico Saloon' ? liquorIcon : restaurantIcon,
+        //     expense: rest.expense,
+        //     description: rest.description
+        // }
     })
 
   return (
@@ -38,7 +32,9 @@ export default function Map({ allRestaurants }) {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 maxZoom={22}
                 />
-            {markers.map((marker) => {
+            {markers}
+
+            {/* {markers.map((marker) => {
                 return (
                 <Marker
                     position={marker.geocode}
@@ -65,7 +61,7 @@ export default function Map({ allRestaurants }) {
                     </Popup>
                 </Marker>
                 )
-            })}
+            })} */}
         </MapContainer> 
   )
 }

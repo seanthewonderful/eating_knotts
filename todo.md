@@ -75,9 +75,9 @@ Create Navbar.jsx
 
 
 Create Leaflet map
-- [] Map displays
-- [] Create markers
-    - [] Use loader data? Or just load it in with useEffect? 
-    - [] Create custom marker icons
+- [x] Map displays
+- [x] Create markers
+    - [x] Use loader data? Or just load it in with useEffect? 
+    - [x] Create custom marker icons
 - [] create Popup.jsx
 - [] create Marker.jsx

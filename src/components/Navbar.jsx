@@ -6,7 +6,8 @@ export default function Navbar() {
       <div id='navbar'>
 
         <div id='navTitle'>
-          <h1>Navbar</h1>
+          <h1>Eating</h1>
+          <img src='https://cdn-cloudfront.cfauthx.com/binaries/content/gallery/kb-en-us/logos/knotts-berry-logo.png' alt='knotts-logo' id='knotts-nav-logo' />
         </div>
           
         <div id='navLinks'>

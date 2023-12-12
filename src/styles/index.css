@@ -74,15 +74,23 @@ button:focus-visible {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
-
 #navLinks {
   display: flex;
   flex-direction: row;
 }
-
 #navLinks a.active {
   color: gold;
+}
+#navTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#knotts-nav-logo {
+  height: 10vh;
+  margin-left: 5%;
 }
 
 /* sizing of map container */

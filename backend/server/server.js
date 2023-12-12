@@ -11,11 +11,14 @@ import ratingHandlers from './controllers/ratingController.js'
 
 const app = express()
 
+import dotenv from 'dotenv'
+dotenv.config()
+
 app.use(morgan('dev'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(session({
-    secret: 'ihadapony',
+    secret: process.env.VITE_EXPRESS_SESSION_SECRET,
     saveUninitialized: false,
     resave: false,
 }))

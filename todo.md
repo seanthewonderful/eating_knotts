@@ -74,13 +74,22 @@ Create Navbar.jsx
 - [x]Navlinks to routes
 - [x]Flex css
 - []Login/register/admin options
-- []Route to user profile
+- [x]Route to user profile
 
 Create user profile page
 - []See user information
 - []See all ratings left
   - []Edit Review button
 - []
+
+Create Admin page 
+- [] Navbar dynamically render for admin page
+- [] What can admins do? 
+  - [] Create new admin
+  - [] Create new user
+  - [] New restaurant
+  - [] Edit restaurant details
+  - [] Edit/Delete user ratings
 
 
 Create Leaflet map
@@ -90,6 +99,14 @@ Create Leaflet map
     - [x] Create custom marker icons
 - [x] create Popup.jsx
 - [x] create Marker.jsx
-- [] Popup box styling
 - [x] Popup link to restaurant page
+Advanced map features:
+- [] Popup box styling
+- [] Different layer?
+- [] Unique Icons
+- [] Collapsible navbar? 
+- [] List view of restaurants with map?
 
+
+Styling
+- [] Mobile friendly

@@ -45,7 +45,7 @@ const authHandlers = {
         req.session.userId = user.userId
 
         res.status(200).send({
-            message: "Login accepted, userId in session",
+            message: "User logged in!",
             userId: user.userId
         })
     },
@@ -77,7 +77,7 @@ const authHandlers = {
         req.session.adminId = admin.admin
 
         res.status(200).send({
-            message: "Login accepted, adminId in session",
+            message: "Admin logged in!",
             adminId: admin.adminId
         })
     },
@@ -86,7 +86,7 @@ const authHandlers = {
 
         req.session.destroy()
         res.status(200).send({
-            message: "Logged out"
+            message: "Logged out. Goodbye!"
         })
     }
 }

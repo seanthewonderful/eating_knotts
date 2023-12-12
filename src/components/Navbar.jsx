@@ -2,12 +2,25 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, Outlet } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import { notify } from '../assets/funx.js'
 
 export default function Navbar() {
 
   const dispatch = useDispatch()
   const userId = useSelector(state => state.userId)
   const adminId = useSelector(state => state.adminId)
+
+  const logout = async () => {
+    axios.get('/api/logout')
+      .then(res =>  {
+        dispatch({
+          type: "LOGOUT",
+          payload: null
+        })
+        notify("", res.data.message)
+      })
+  } 
 
   const sessionCheck = async () => {
     const { data } = await axios.get('/api/session-check')
@@ -18,6 +31,7 @@ export default function Navbar() {
         payload: data.userId
       })
     }
+    console.log(data.message)
   }
 
   useEffect(() => {
@@ -49,15 +63,28 @@ export default function Navbar() {
           </button>
 
         {userId && 
+          <>
           <button className='nav-btn'>
             <NavLink
               to={`/profile/${userId}`}
-              >Profile
+              >
+                Profile
             </NavLink>
           </button>
+
+          <button className='nav-btn'>
+            <NavLink
+              to={'/'}
+              onClick={logout}
+              >
+                Logout
+            </NavLink>
+          </button>
+          </>
           }
 
         {adminId && 
+          <>
           <button className='nav-btn'>
             <NavLink 
               to={`/admin/${adminId}`}
@@ -65,6 +92,16 @@ export default function Navbar() {
                 Profile
             </NavLink>
           </button>
+
+          <button className='nav-btn'>
+            <NavLink
+              to={'/'}
+              onClick={logout}
+              >
+                Logout
+            </NavLink>
+          </button>
+          </>
           }
 
         {!userId && !adminId &&
@@ -80,6 +117,19 @@ export default function Navbar() {
         </div>
         
       </div>
+
+      <ToastContainer 
+          position="top-center"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false}
+          theme="light"
+        />
 
       <main>
         <Outlet />

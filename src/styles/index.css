@@ -109,3 +109,7 @@ button:focus-visible {
 /* .dx-visibility-change-handler {
   width: 100%;
 } */
+
+#login-form {
+  width: 50%;
+}

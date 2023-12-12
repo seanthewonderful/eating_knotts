@@ -16,6 +16,7 @@ import Login from './pages/authPages/Login.jsx'
 import Register from './pages/authPages/Register.jsx'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

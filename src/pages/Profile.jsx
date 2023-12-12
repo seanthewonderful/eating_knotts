@@ -11,7 +11,7 @@ export default function Profile() {
       <h1>Profile - {user.username}</h1>
       <ul>
         <li>User ID: {user.userId}</li>
-        <li>Email: {toTitleCase(user.email)}</li>
+        <li>Email: {user.email}</li>
         <li>Name: {toTitleCase(user.firstName)} {toTitleCase(user.lastName)}</li>
       </ul>
     </div>

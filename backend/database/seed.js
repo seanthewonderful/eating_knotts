@@ -245,10 +245,10 @@ const adminObjs = []
 
 for (let admin of admins) {
     adminObjs.push({
-        username: admin,
+        username: admin.toLowerCase(),
         password: "test",
-        email: `${admin}@${admin}.com`,
-        firstName: admin,
+        email: `${admin.toLowerCase()}@${admin.toLowerCase()}.com`,
+        firstName: admin.toLowerCase(),
         lastName: 'Administrator'
     })
 }
@@ -262,10 +262,10 @@ const userObjs = []
 
 for (let user of users) {
     userObjs.push({
-        username: user,
+        username: user.toLowerCase(),
         password: "test",
-        email: `${user}@${user}.com`,
-        firstName: user,
+        email: `${user.toLowerCase()}@${user.toLowerCase()}.com`,
+        firstName: user.toLowerCase(),
         lastName: "Demo"
     })
 }

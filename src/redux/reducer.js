@@ -24,6 +24,13 @@ const reducer = (state=initialState, action) => {
                 restaurantId: action.payload
             }
 
+        case 'LOGOUT':
+            return {
+                ...state,
+                userId: null,
+                adminId: null,
+            }
+
         default: 
             return state
     }

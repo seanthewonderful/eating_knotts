@@ -71,7 +71,25 @@ Redux store
 Create Home.jsx
 
 Create Navbar.jsx
+- [x]Navlinks to routes
+- [x]Flex css
 - []Login/register/admin options
+- []Route to user profile
+
+Create user profile page
+- []See user information
+- []See all ratings left
+  - []Edit Review button
+- []
 
 
 Create Leaflet map
+- [x] Map displays
+- [x] Create markers
+    - [x] Use loader data? Or just load it in with useEffect? 
+    - [x] Create custom marker icons
+- [x] create Popup.jsx
+- [x] create Marker.jsx
+- [] Popup box styling
+- [x] Popup link to restaurant page
+

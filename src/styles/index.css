@@ -11,6 +11,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  height: 100vh;
+}
+
+main {
+  box-sizing: border-box;
+  width: 100vw;
 }
 
 a {
@@ -28,11 +35,6 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
@@ -63,10 +65,47 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #70296f;
+    background-color: #763076;
   }
 }
 
-#navLinks a.active {
-  color: gold
+#navbar {
+  border: purple 1px solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
+#navLinks {
+  display: flex;
+  flex-direction: row;
+}
+#navLinks a.active {
+  color: gold;
+}
+#navTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#knotts-nav-logo {
+  height: 10vh;
+  margin-left: 5%;
+}
+
+/* sizing of map container */
+.leaflet-container {
+  height: 90vh;
+}
+/* .leaflet-popup {
+  max-width: 50vw;
+} */
+/* .leaflet-popup-content-wrapper {
+  max-width: 100%;
+} */
+/* .leaflet-popup-content {
+  min-width: 90%;
+} */
+/* .dx-visibility-change-handler {
+  width: 100%;
+} */

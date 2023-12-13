@@ -76,6 +76,11 @@ button:focus-visible {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-right: 2%;
+  padding-left: 2%;
+}
+.nav-btn {
+  color: white;
 }
 #navLinks {
   display: flex;

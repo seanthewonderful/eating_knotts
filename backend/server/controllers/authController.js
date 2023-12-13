@@ -6,9 +6,15 @@ const authHandlers = {
     sessionCheck: async (req, res) => {
 
         if (req.session.userId) {
+            const user = await User.findByPk(req.session.userId, {
+                include: [
+                    { model: Rating }
+                ]
+            })
             res.status(200).send({
                 message: "User in session",
-                userId: req.session.userId
+                userId: req.session.userId,
+                user: user
             })
         } else {
             res.status(200).send({
@@ -44,9 +50,16 @@ const authHandlers = {
 
         req.session.userId = user.userId
 
+        const userReturn = await User.findByPk(user.userId, {
+            include: [
+                { model: Rating }
+            ]
+        })
+
         res.status(200).send({
             message: "User logged in!",
-            userId: user.userId
+            userId: user.userId,
+            user: userReturn
         })
     },
 
@@ -74,11 +87,14 @@ const authHandlers = {
             return
         }
 
-        req.session.adminId = admin.admin
+        req.session.adminId = admin.adminId
+
+        const adminReturn = await Admin.findByPk(admin.adminId)
 
         res.status(200).send({
             message: "Admin logged in!",
-            adminId: admin.adminId
+            adminId: admin.adminId,
+            admin: adminReturn
         })
     },
 

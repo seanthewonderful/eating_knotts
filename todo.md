@@ -87,7 +87,13 @@ Create user profile page
 - [x]See user information
 - []See all ratings left
   - []Edit Review button
-- []
+  - []Allow for reviews on restaurant page
+- []Navbar display username and avatar
+
+Restaurant page(s)
+- [] Allow for user ratings
+  - [] Logic if no ratings
+  - [] display total ratings and avg stars
 
 Create Admin page 
 - [] Navbar dynamically render for admin page

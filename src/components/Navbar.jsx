@@ -45,6 +45,12 @@ export default function Navbar() {
           <h1>Eating</h1>
           <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Knotts_Berry_Farm_Logo.svg/2560px-Knotts_Berry_Farm_Logo.svg.png' alt='knotts-logo' id='knotts-nav-logo' />
         </div>
+
+        {userId &&
+        <div>
+          <h4>Welcome, ${}</h4>
+        </div>
+        }
           
         <div id='navLinks'>
           <button className='nav-btn'>
@@ -71,13 +77,13 @@ export default function Navbar() {
             </NavLink>
           </button>
 
-          <button className='nav-btn'>
-            <NavLink
-              to={'/'}
+          <button className='nav-btn'
+            onClick={logout}>
+            {/* <NavLink
               onClick={logout}
-              >
+              > */}
                 Logout
-            </NavLink>
+            {/* </NavLink> */}
           </button>
           </>
           }

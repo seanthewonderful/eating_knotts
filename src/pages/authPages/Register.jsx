@@ -65,6 +65,7 @@ export default function Register({ handleRegister }) {
 	const avatarOptions = avatars.map(avatar => {
 		return (
 			<ProfileIcon
+				key={avatar.id}
 				avatar={avatar}
 				selectedAvatar={selectedAvatar}
 				setSelectedAvatar={setSelectedAvatar}

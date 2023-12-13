@@ -31,7 +31,6 @@ export default function Navbar() {
         payload: data.userId
       })
     }
-    console.log(data.message)
   }
 
   useEffect(() => {
@@ -44,7 +43,7 @@ export default function Navbar() {
 
         <div id='navTitle'>
           <h1>Eating</h1>
-          <img src='https://cdn.worldvectorlogo.com/logos/knott-s-berry-farm.svg' alt='knotts-logo' id='knotts-nav-logo' />
+          <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Knotts_Berry_Farm_Logo.svg/2560px-Knotts_Berry_Farm_Logo.svg.png' alt='knotts-logo' id='knotts-nav-logo' />
         </div>
           
         <div id='navLinks'>

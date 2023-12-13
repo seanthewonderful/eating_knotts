@@ -74,8 +74,8 @@ Login/logout
     - [x] Admin login
 - [x] userId/adminId save to req.session
 - [x] userId/adminId save to Redux
-- [] Register page
-    - [] User only
+- [x] Register page
+    - [x] User only
 
 Create Navbar.jsx
 - [x]Navlinks to routes
@@ -107,13 +107,13 @@ Create Leaflet map
 - [x] create Popup.jsx
 - [x] create Marker.jsx
 - [x] Popup link to restaurant page
+
 Advanced map features:
 - [] Popup box styling
 - [] Different layer?
 - [] Unique Icons
 - [] Collapsible navbar? 
 - [] List view of restaurants with map?
-
 
 Styling
 - [] Mobile friendly

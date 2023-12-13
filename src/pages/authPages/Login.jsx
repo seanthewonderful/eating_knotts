@@ -45,7 +45,7 @@ export default function Login() {
         .then(res => {
           dispatch({
             type: 'USER_AUTH',
-            payload: res.data.userId
+            payload: res.data.user
           })
           navigate('/')
           notify("success", res.data.message)

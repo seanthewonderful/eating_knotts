@@ -8,7 +8,7 @@ import { notify } from '../assets/funx.js'
 export default function Navbar() {
 
   const dispatch = useDispatch()
-  const userId = useSelector(state => state.userId)
+  const user = useSelector(state => state.user)
   const adminId = useSelector(state => state.adminId)
 
   const logout = async () => {
@@ -25,10 +25,10 @@ export default function Navbar() {
   const sessionCheck = async () => {
     const { data } = await axios.get('/api/session-check')
 
-    if (data.userId) {
+    if (data.user) {
       dispatch({
         type: 'USER_AUTH',
-        payload: data.userId
+        payload: data.user
       })
     }
   }
@@ -45,12 +45,6 @@ export default function Navbar() {
           <h1>Eating</h1>
           <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Knotts_Berry_Farm_Logo.svg/2560px-Knotts_Berry_Farm_Logo.svg.png' alt='knotts-logo' id='knotts-nav-logo' />
         </div>
-
-        {userId &&
-        <div>
-          <h4>Welcome, ${}</h4>
-        </div>
-        }
           
         <div id='navLinks'>
           <button className='nav-btn'>
@@ -67,24 +61,28 @@ export default function Navbar() {
             </NavLink>
           </button>
 
-        {userId && 
+        {user && 
           <>
           <button className='nav-btn'>
             <NavLink
-              to={`/profile/${userId}`}
+              to={`/profile/${user.userId}`}
               >
                 Profile
             </NavLink>
           </button>
 
-          <button className='nav-btn'
-            onClick={logout}>
-            {/* <NavLink
-              onClick={logout}
-              > */}
+          <button 
+            className='nav-btn'
+            onClick={logout}
+            >
                 Logout
-            {/* </NavLink> */}
           </button>
+
+          <img 
+            src={user.img}
+            alt='user-icon'
+            id='nav-profile-icon'
+            />
           </>
           }
 
@@ -109,7 +107,7 @@ export default function Navbar() {
           </>
           }
 
-        {!userId && !adminId &&
+        {!user && !adminId &&
           <button className='nav-btn'>
             <NavLink
               to={'/login'}

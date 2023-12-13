@@ -1,5 +1,6 @@
 const initialState = {
     userId: null,
+    user: null,
     adminId: null,
     restaurantId: null,
 }
@@ -9,7 +10,7 @@ const reducer = (state=initialState, action) => {
         case 'USER_AUTH':
             return {
                 ...state,
-                userId: action.payload,
+                user: action.payload,
             }
 
         case 'ADMIN_AUTH': 
@@ -27,7 +28,7 @@ const reducer = (state=initialState, action) => {
         case 'LOGOUT':
             return {
                 ...state,
-                userId: null,
+                user: null,
                 adminId: null,
             }
 

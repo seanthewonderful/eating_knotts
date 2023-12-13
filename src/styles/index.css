@@ -99,6 +99,11 @@ button:focus-visible {
   margin-left: 5%;
 }
 
+#nav-profile-icon {
+  height: 5vh;
+  margin-left: 2%;
+}
+
 /* sizing of map container */
 .leaflet-container {
   height: 90vh;

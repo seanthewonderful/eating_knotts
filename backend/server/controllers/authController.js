@@ -1,4 +1,4 @@
-import { User, Admin, db } from '../../database/model.js'
+import { User, Admin, Rating, db } from '../../database/model.js'
 import bcryptjs from 'bcryptjs'
 
 const authHandlers = {
@@ -19,7 +19,8 @@ const authHandlers = {
         } else {
             res.status(200).send({
                 message: "No user in session",
-                userId: null
+                userId: null,
+                user: null
             })
         }
     },

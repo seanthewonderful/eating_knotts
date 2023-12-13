@@ -4,28 +4,27 @@ import { notify, toTitleCase } from '../assets/funx.js'
 import { Button, Col, Container, Form, Row, Accordion } from 'react-bootstrap'
 import { useState } from 'react'
 import ProfileIcon from '../components/ProfileIcon.jsx'
+import { useDispatch } from 'react-redux'
 
 export default function Profile() {
 
   const { user } = useLoaderData()
 
-  const [username, setUsername] = useState(user.username)
   const [email, setEmail] = useState(user.email)
   const [name, setName] = useState({
     fName: user.firstName, 
     lName: user.lastName
   })
-  const [password, setPassword] = useState("")
   const [selectedAvatar, setSelectedAvatar] = useState(user.img)
   const [editMode, setEditMode] = useState(false)
+
+  const dispatch = useDispatch()
 
   const handleEditSave = (e) => {
     e.preventDefault()
 
     const editedInfo = {
-      username,
       email,
-      password,
       firstName: name.fName,
       lastName: name.lName,
       img: selectedAvatar,
@@ -33,6 +32,10 @@ export default function Profile() {
 
     axios.put(`/api/user/update/${user.userId}`, editedInfo)
       .then(res => {
+        dispatch({
+          type: "USER_AUTH",
+          payload: res.data.user
+        })
         notify("success", res.data.message)
       })
       .catch(error => {
@@ -80,16 +83,10 @@ export default function Profile() {
         <Col>
           <h5>Nice to see you! Just a reminder, here's your info</h5>
           <li><strong>User ID:</strong> {user.userId}</li>
+          <li><strong>Username:</strong> {user.username}</li>
         {editMode ? 
           <Form>
             <Form.Group className='mb-1' controlId='formEmail' >
-              <Form.Label>Username:</Form.Label>
-              <Form.Control 
-                type='text'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                />
               <Form.Label>Email address:</Form.Label>
               <Form.Control 
                 type='text'
@@ -130,7 +127,6 @@ export default function Profile() {
           </Form>
           :
           <>
-            <li><strong>Username:</strong> {username}</li>
             <li><strong>Email address:</strong> {email}</li>
             <li><strong>Name:</strong> {toTitleCase(name.fName)} {toTitleCase(name.lName)}</li>
             <li><strong>Password:</strong> <em>Not even we know that</em></li>

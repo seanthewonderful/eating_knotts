@@ -48,14 +48,28 @@ const userHandlers = {
 
     createUser: async (req, res) => {
 
-        const { username, password, email, firstName, lastName, img } = req.body
+        const { username, password, email, name, img } = req.body
+
+        if (await User.findOne({ where: { username } })) {
+            res.status(400).send({
+                message: "Username already in use",
+                userId: null
+            })
+            return
+        } else if (await User.findOne({ where: { email } })) {
+            res.status(400).send({
+                message: "Email address already in use",
+                userId: null
+            })
+            return
+        }
 
         const user = await User.create({
             username,
             password,
-            // email,
-            // firstName,
-            // lastName,
+            email,
+            firstName: name.fName,
+            lastName: name.lName,
             img,
         })
 
@@ -84,12 +98,12 @@ const userHandlers = {
             })
             return
         } 
-        // else if (await User.findOne({ where: { email }})) {
-        //     res.status(401).send({
-        //         message: "Email already in use"
-        //     })
-        //     return
-        // }
+        else if (await User.findOne({ where: { email }})) {
+            res.status(401).send({
+                message: "Email already in use"
+            })
+            return
+        }
 
         const user = await User.scope('withPassword').findByPk(req.session.userId)
 

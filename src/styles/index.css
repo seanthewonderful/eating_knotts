@@ -103,3 +103,17 @@ button:focus-visible {
   background-color: #763076;
   color: white
 }
+
+#register-form {
+  margin-top: 2%;
+  background-color: #763076;
+  color: white;
+}
+
+.prof-icon-selection {
+  height: 10vh;
+  margin: 2%;
+}
+#selected-avatar {
+  border: 2px solid red;
+}

@@ -1,18 +1,19 @@
 import axios from "axios"
 import { useState } from "react"
 
-import { Button, Container, Form, Row, Col } from "react-bootstrap"
+import { Button, Container, Form, Row, Col, Stack } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { useNavigate, NavLink } from "react-router-dom"
 
 import { notify } from "../../assets/funx.js"
+import Register from "./Register.jsx"
 
 export default function Login() {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [checked, setChecked] = useState(false)
-  console.log(checked)
+  const [register, setRegister] = useState(false)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -26,7 +27,6 @@ export default function Login() {
     }
 
     if (checked) {
-
       axios.post('/api/login/admin', bodyObj)
         .then(res => {
           dispatch({
@@ -41,7 +41,6 @@ export default function Login() {
         })
 
     } else {
-
       axios.post('/api/login', bodyObj)
         .then(res => {
           dispatch({
@@ -60,9 +59,12 @@ export default function Login() {
   }
 
   const handleCheck = () => setChecked(!checked)
+  const handleRegister = () => setRegister(!register)
 
-
-  return (
+  return register ? (
+    <Register handleRegister={handleRegister}/>
+  ) 
+  : (
     <Container fluid>
 
       <Row className="justify-content-center">
@@ -77,6 +79,7 @@ export default function Login() {
                 type="text" 
                 placeholder="Enter username" 
                 onChange={(e) => setUsername(e.target.value)}
+                required
                 />
             </Form.Group>
 
@@ -86,13 +89,34 @@ export default function Login() {
                 type="password" 
                 placeholder="Enter password" 
                 onChange={(e) => setPassword(e.target.value)}
+                required
                 />
             </Form.Group>
 
+            <Row className="justify-content-between">
+              <Col>
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Col>
 
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
+              <Col>
+                <Stack 
+                  direction="horizontal" 
+                  className="align-items-baseline justify-content-end"
+                  >
+                  <h6>Need to Register?</h6>
+                  <Button 
+                    variant="secondary"
+                    className="ms-2"
+                    onClick={handleRegister}
+                    >
+                    Register
+                  </Button>
+
+                </Stack>
+              </Col>
+            </Row>
 
             <Form.Group className="mt-3" controlId="formCheckbox" >
               <Form.Check 

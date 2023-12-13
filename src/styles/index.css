@@ -81,6 +81,8 @@ button:focus-visible {
 }
 .nav-btn {
   color: white;
+  background-color: #763076;
+  margin-right: 1%;
 }
 #navLinks {
   display: flex;
@@ -98,7 +100,6 @@ button:focus-visible {
   height: 8vh;
   margin-left: 5%;
 }
-
 #nav-profile-icon {
   height: 5vh;
   margin-left: 2%;
@@ -127,4 +128,9 @@ button:focus-visible {
 }
 #selected-avatar {
   border: 2px solid red;
+}
+
+/* star images styles */
+.bi-star, .bi-star-fill, .bi-star-half {
+  color: rgb(222, 189, 0);
 }

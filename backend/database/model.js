@@ -195,7 +195,7 @@ Restaurant.init(
         img: {
             type: DataTypes.STRING(50),
             allowNull: false,
-            defaultValue: "/public/restaurants/default.png"
+            defaultValue: "/restaurants/default.png"
         },
         description: {
             type: DataTypes.TEXT,

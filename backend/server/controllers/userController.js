@@ -5,7 +5,14 @@ const userHandlers = {
 
 	getUserById: async (req, res) => {
 
-		const user = await User.findByPk(req.params.userId)
+		const user = await User.findByPk(req.params.userId, {
+			include: {
+				model: Rating,
+				include: {
+					model: Restaurant
+				}
+			}
+		})
 
 		if (!user) {
 			res.status(400).send({
@@ -29,7 +36,12 @@ const userHandlers = {
 				username: username
 			},
 			include: [
-				{ model: Rating }
+				{ 
+					model: Rating,
+					include: {
+						model: Restaurant
+					} 
+				}
 			]
 		})
 
@@ -64,7 +76,7 @@ const userHandlers = {
 			return
 		}
 
-		const user = await User.create({
+		await User.create({
 			username,
 			password,
 			email,
@@ -73,11 +85,24 @@ const userHandlers = {
 			img,
 		})
 
+		const user = await User.findOne({
+			where: {
+				username
+			},
+			include: {
+				model: Rating,
+				include: {
+					model: Restaurant
+				}
+			}
+		})
+
 		req.session.userId = user.userId
 
 		res.status(200).send({
 			message: "User created and logged in",
 			userId: user.userId,
+			user: user,
 		})
 	},
 
@@ -92,7 +117,14 @@ const userHandlers = {
 
 		const { email, firstName, lastName, img } = req.body
 
-		const user = await User.findByPk(req.session.userId)
+		const user = await User.findByPk(req.session.userId, {
+			include: {
+				model: Rating,
+				include: {
+					model: Restaurant
+				}
+			}
+		})
 
 		if (user.email !== email) {
 			if (await User.findOne({ where: { email }})) {

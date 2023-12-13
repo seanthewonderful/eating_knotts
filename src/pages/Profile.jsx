@@ -5,6 +5,7 @@ import { Button, Col, Container, Form, Row, Accordion } from 'react-bootstrap'
 import { useState } from 'react'
 import ProfileIcon from '../components/ProfileIcon.jsx'
 import { useDispatch } from 'react-redux'
+import RatingCard from '../components/RatingCard.jsx'
 
 export default function Profile() {
 
@@ -24,9 +25,9 @@ export default function Profile() {
     e.preventDefault()
 
     const editedInfo = {
-      email,
-      firstName: name.fName,
-      lastName: name.lName,
+      email: email.toLowerCase(),
+      firstName: name.fName.toLowerCase(),
+      lastName: name.lName.toLowerCase(),
       img: selectedAvatar,
     }
 
@@ -46,22 +47,22 @@ export default function Profile() {
   }
 
   const avatars = [
-		{imgSrc: "/public/proficons/default.png", id: 1},
-		{imgSrc: "/public/proficons/charlie.png", id: 2},
-		{imgSrc: "/public/proficons/linus.gif", id: 3},
-		{imgSrc: "/public/proficons/lucy.png", id: 4},
-		{imgSrc: "/public/proficons/marcie.png", id: 5},
-		{imgSrc: "/public/proficons/patty.png", id: 6},
-		{imgSrc: "/public/proficons/franklin.png", id: 7},
-		{imgSrc: "/public/proficons/pigpen.png", id: 8},
-		{imgSrc: "/public/proficons/rerun.webp", id: 9},
-		{imgSrc: "/public/proficons/sally.png", id: 10},
-		{imgSrc: "/public/proficons/schroeder.png", id: 11},
-		{imgSrc: "/public/proficons/snoopy.png", id: 12},
-		{imgSrc: "/public/proficons/olaf.webp", id: 13},
-		{imgSrc: "/public/proficons/belle.jpeg", id: 14},
-		{imgSrc: "/public/proficons/spike.webp", id: 15},
-		{imgSrc: "/public/proficons/woodstock.png", id: 16},
+		{imgSrc: "/proficons/default.png", id: 1},
+		{imgSrc: "/proficons/charlie.png", id: 2},
+		{imgSrc: "/proficons/linus.gif", id: 3},
+		{imgSrc: "/proficons/lucy.png", id: 4},
+		{imgSrc: "/proficons/marcie.png", id: 5},
+		{imgSrc: "/proficons/patty.png", id: 6},
+		{imgSrc: "/proficons/franklin.png", id: 7},
+		{imgSrc: "/proficons/pigpen.png", id: 8},
+		{imgSrc: "/proficons/rerun.webp", id: 9},
+		{imgSrc: "/proficons/sally.png", id: 10},
+		{imgSrc: "/proficons/schroeder.png", id: 11},
+		{imgSrc: "/proficons/snoopy.png", id: 12},
+		{imgSrc: "/proficons/olaf.webp", id: 13},
+		{imgSrc: "/proficons/belle.jpeg", id: 14},
+		{imgSrc: "/proficons/spike.webp", id: 15},
+		{imgSrc: "/proficons/woodstock.png", id: 16},
 	]
 	const avatarOptions = avatars.map(avatar => {
 		return (
@@ -72,6 +73,12 @@ export default function Profile() {
 				/>
 		)
 	})
+
+  const userRatings = user.ratings.map(rating => {
+    return (
+      <RatingCard key={rating.ratingId} rating={rating} />
+    )
+  })
 
   return (
     <Container>
@@ -141,6 +148,10 @@ export default function Profile() {
           </>
         }
         </Col>
+      </Row>
+
+      <Row>
+        {userRatings}
       </Row>
     </Container>
 

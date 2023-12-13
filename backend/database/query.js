@@ -1,20 +1,16 @@
 import { User, Restaurant, Rating, Land, db } from './model.js'
 
-const allRestaurants = await Restaurant.findAll({
-    include: [
-        {
-            model: Rating,
-            include: {
-                model: User
-            }
-        },
-        {
-            model: Land
-        }
-        ]
-    }
-)
+const rory = await User.findOne({where: {username: "rory"}})
 
-console.log(allRestaurants)
+// await rory.createRating({
+//     restaurantId: 1,
+//     stars: 4,
+//     review: "Neato McTeeto"
+// })
+// await rory.createRating({
+//     restaurantId: 2,
+//     stars: 3,
+//     review: "Cool beans here"
+// })
 
 await db.close()

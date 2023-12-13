@@ -1,15 +1,18 @@
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import { Button } from 'react-bootstrap'
 import { notify } from '../assets/funx.js'
 
 export default function Navbar() {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const user = useSelector(state => state.user)
   const adminId = useSelector(state => state.adminId)
+
 
   const logout = async () => {
     axios.get('/api/logout')
@@ -19,6 +22,7 @@ export default function Navbar() {
           payload: null
         })
         notify("", res.data.message)
+        navigate('/')
       })
   } 
 
@@ -47,74 +51,75 @@ export default function Navbar() {
         </div>
           
         <div id='navLinks'>
-          <button className='nav-btn'>
+          <Button className='nav-btn'>
             <NavLink
               to='/'
               >Home
             </NavLink>
-          </button>
+          </Button>
 
-          <button className='nav-btn'>
+          <Button className='nav-btn'>
             <NavLink
               to='/restaurants'
               >Restaurants
             </NavLink>
-          </button>
+          </Button>
 
         {user && 
           <>
-          <button className='nav-btn'>
+          <Button className='nav-btn'>
             <NavLink
               to={`/profile/${user.userId}`}
               >
                 Profile
             </NavLink>
-          </button>
-
-          <button 
-            className='nav-btn'
-            onClick={logout}
-            >
-                Logout
-          </button>
+          </Button>
 
           <img 
             src={user.img}
             alt='user-icon'
             id='nav-profile-icon'
             />
+
+          <Button 
+            className='nav-btn'
+            onClick={logout}
+            >
+                Logout
+          </Button>
+
           </>
           }
 
         {adminId && 
           <>
-          <button className='nav-btn'>
+          <Button className='nav-btn'>
             <NavLink 
               to={`/admin/${adminId}`}
               >
                 Profile
             </NavLink>
-          </button>
+          </Button>
 
-          <button className='nav-btn'>
+          <Button className='nav-btn'>
             <NavLink
               to={'/'}
               onClick={logout}
               >
                 Logout
             </NavLink>
-          </button>
+          </Button>
           </>
           }
 
         {!user && !adminId &&
-          <button className='nav-btn'>
+          <Button className='nav-btn'>
             <NavLink
               to={'/login'}
             >
               Login
             </NavLink>
-          </button>
+          </Button>
           }
 
         </div>

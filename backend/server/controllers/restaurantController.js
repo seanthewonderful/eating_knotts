@@ -32,7 +32,10 @@ const restaurantHandlers = {
 
         const landWithRestaurants = await Land.findByPk(landId, {
             include: {
-                model: Restaurant
+                model: Restaurant,
+                include: {
+                    model: Rating
+                }
             }
         })
 
@@ -54,6 +57,9 @@ const restaurantHandlers = {
                         ), 
                         'LIKE', `%${restName.toLowerCase()}%`
                         )
+            },
+            include: {
+                model: Rating
             }
         })
 

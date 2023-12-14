@@ -150,7 +150,9 @@ export default function Profile() {
         </Col>
       </Row>
 
-      <Row>
+      <Row
+        className='row-cols-auto'
+        >
         {userRatings}
       </Row>
     </Container>

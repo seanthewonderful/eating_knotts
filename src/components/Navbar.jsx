@@ -21,7 +21,7 @@ export default function Navbar() {
           type: "LOGOUT",
           payload: null
         })
-        notify("", res.data.message)
+        notify("success", res.data.message)
         navigate('/')
       })
   } 

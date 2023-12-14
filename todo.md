@@ -85,10 +85,10 @@ Create Navbar.jsx
 
 Create user profile page
 - [x]See user information
-- []See all ratings left
-  - []Edit Review button
+- [x]See all ratings left
+  - [x]Edit Review button
   - []Allow for reviews on restaurant page
-- []Navbar display username and avatar
+- [x]Navbar display username and avatar
 
 Restaurant page(s)
 - [] Allow for user ratings
@@ -123,3 +123,5 @@ Advanced map features:
 
 Styling
 - [] Mobile friendly
+- [] Navbar sticky top
+- [] Collapsible edit info

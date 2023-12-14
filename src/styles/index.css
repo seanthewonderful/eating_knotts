@@ -134,3 +134,14 @@ button:focus-visible {
 .bi-star, .bi-star-fill, .bi-star-half {
   color: rgb(222, 189, 0);
 }
+
+/* rating cards */
+.card {
+  background-color: rgb(255, 209, 255);
+}
+.rating-card-img {
+  height: 10rem;
+  width: auto;
+  overflow: hidden;
+}
+

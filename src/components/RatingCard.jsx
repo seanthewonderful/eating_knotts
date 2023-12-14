@@ -4,6 +4,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import StarAvg from "./StarAvg"
 import Stars from "./Stars"
+import { useNavigate } from "react-router-dom"
 
 export default function RatingCard({ rating }) {
 
@@ -12,6 +13,8 @@ export default function RatingCard({ rating }) {
 	const [avgStars, setAvgStars] = useState(0)
 	const [newStarRating, setNewStarRating] = useState(rating.stars)
 	const [newRatingReview, setNewRatingReview] = useState(rating.review)
+
+	const navigate = useNavigate()
 
 	console.log(newStarRating)
 
@@ -68,6 +71,7 @@ export default function RatingCard({ rating }) {
 					variant="primary"
 					size="sm"
 					className="mb-4"
+					onClick={() => navigate(`/restaurant/${restaurant.restaurantId}`)}
 					>
 						Visit
 				</Button>
